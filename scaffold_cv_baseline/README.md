@@ -17,7 +17,7 @@ The first run downloads `tox21.csv` (MoleculeNet / DeepChem mirror) into this fo
 
 - 12 targets: NR-AR, NR-AR-LBD, NR-AhR, NR-Aromatase, NR-ER, NR-ER-LBD, NR-PPAR-gamma, SR-ARE, SR-ATAD5, SR-HSE, SR-MMP, SR-p53.
 - Missing labels (compound not tested on a target) are masked per target, not filled with 0.
-- Class imbalance (about 3-15% positives per target) handled with `class_weight="balanced_subsample"` (RF) or `scale_pos_weight` (LightGBM).
+- Class imbalance (about 3-16% positives per target) handled with `class_weight="balanced_subsample"` (RF) or `scale_pos_weight` (LightGBM).
 - Scaffold split (Bemis-Murcko): no ring-system overlap between train and test, so the score reflects generalization to new scaffolds.
 - Metrics: ROC-AUC (primary), PR-AUC (secondary, more informative at low positive rates).
 
