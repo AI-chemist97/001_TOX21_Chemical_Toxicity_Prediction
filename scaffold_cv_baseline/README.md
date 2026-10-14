@@ -46,3 +46,34 @@ Notes:
 
 - Targets with few positives (NR-AR, NR-AR-LBD, NR-ER) have a large fold-to-fold spread; read their means with care.
 - No hyperparameter tuning was done; this is a baseline. The `--split random` comparison has not been run yet, so no random-split number is claimed here.
+
+## Checking chemistry-based hypotheses
+
+A model score does not show what the model relies on, so I picked four substructures with a chemical reason and checked whether their active rate is really higher in Tox21. I know quinones and hydroquinone as redox-active molecules because my master's research detected hydroquinone electrochemically. The hypotheses were written down before I looked at the numbers.
+
+| Substructure | Hypothesis | Active rate with the group | Without |
+|---|---|---|---|
+| Quinone | SR-ARE (reactive oxygen species switch on the oxidative stress response) | 29 of 36 (81%) | 16% |
+| Hydroquinone, catechol | SR-ARE (same reason) | 23 of 45 (51%) | 16% |
+| Organotin | SR-MMP (damage to the mitochondrial membrane) | 11 of 16 (69%) | 16% |
+| 3+ fused aromatic rings | NR-AhR (flat molecules bind the AhR receptor) | 55 of 82 (67%) | 11% |
+| Nitroaromatic | SR-ARE (electrophilic stress) | 75 of 233 (32%) | 16% |
+
+Hydroquinone itself (`Oc1ccc(O)cc1`) is in the data as one row and is active in SR-ARE and NR-AhR. NR-AhR was not one of my hypotheses and I have not explained it.
+
+Code: `domain_analysis.py`. Full table: `domain_enrichment.csv`.
+
+### Caveats
+
+- Organotin has only 16 compounds, so its rate is unstable.
+- I compared 11 groups against 12 targets, so some high values are probably chance. The table above only lists the hypotheses I fixed in advance.
+- "Active" means a signal in a cell assay. It does not prove toxicity in humans, and cell death can also produce a signal.
+- This is an association, not proof that the structure is the cause.
+
+### Adding the flags to the model
+
+I turned the 11 groups above into 0/1 columns, added them to the existing 2,265 features (2,276 in total) and ran the same scaffold 5-fold evaluation again. Code: `domain_features_cv.py`. Result: `domain_features_cv.csv`.
+
+The mean ROC-AUC over the 12 targets was almost the same, 0.7945 before and 0.7937 after. Six targets went up a little and six went down a little. For all 12 targets the change was smaller than the fold-to-fold standard deviation, so I cannot say the flags helped. SR-MMP improved in all 5 folds, but only by +0.005.
+
+My guess is that the Morgan fingerprint and RDKit descriptors already carry similar structural information, so the flags added nothing new. I have not checked this.

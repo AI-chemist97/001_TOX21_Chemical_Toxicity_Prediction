@@ -81,4 +81,4 @@
 
 ## 5. 후속 작업: 12개 타깃 scaffold 5-fold 평가
 
-위 노트북은 NR-AR 하나를 언더샘플링해 결정 트리로 평가한 1차 기록입니다. 이후 12개 타깃 전체를 대상으로 결측 라벨을 타깃별로 제외하고, 같은 scaffold가 train과 test에 섞이지 않도록 5-fold로 나누어 ROC-AUC와 PR-AUC로 다시 평가했습니다. 코드와 결과는 [`scaffold_cv_baseline/`](scaffold_cv_baseline/)에 있습니다 (12개 타깃 평균 ROC-AUC 0.795).
+위 노트북은 NR-AR 하나를 언더샘플링해 결정 트리로 평가한 1차 기록입니다. 이후 12개 타깃 전체를 대상으로 결측 라벨을 타깃별로 제외하고, 같은 scaffold가 train과 test에 섞이지 않도록 5-fold로 나누어 ROC-AUC와 PR-AUC로 다시 평가했습니다. 코드와 결과는 [`scaffold_cv_baseline/`](scaffold_cv_baseline/)에 있습니다 (12개 타깃 평균 ROC-AUC 0.795). 같은 폴더에는 화학 지식으로 세운 가설(퀴논, 하이드로퀴논, 유기주석 등)을 데이터로 확인한 `domain_analysis.py`도 있습니다.
