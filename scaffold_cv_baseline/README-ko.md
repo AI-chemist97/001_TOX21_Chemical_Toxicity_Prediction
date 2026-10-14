@@ -1,8 +1,10 @@
 # Tox21 Toxicity Prediction
 
-Rev. 0 | Created: 2026-10-12 | Updated: 2026-10-12 20:15 KST
+Rev. 1 | Created: 2026-10-12 | Updated: 2026-10-14 23:08 KST
 
 Tox21 데이터의 12개 독성 타깃을 모두 예측하고, scaffold 기준으로 나눈 검증에서 ROC-AUC를 보고하는 baseline 프로젝트이다. 이전 notebook (NR-AR 한 타깃, 정확도 중심)을 12개 타깃과 ROC-AUC 중심의 평가로 다시 설계했다.
+
+이 폴더의 코드와 README는 AI 코딩 도구 (Claude Code)와 함께 작성했다. 저장소 최상위의 첫 notebook은 작성자가 직접 만든 것이다.
 
 ## 1. Purpose
 

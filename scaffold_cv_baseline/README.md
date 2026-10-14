@@ -2,6 +2,8 @@
 
 Chemical toxicity classification on all 12 Tox21 targets (MoleculeNet), evaluated with ROC-AUC on a scaffold split.
 
+The code and this README in this folder were written with an AI coding tool (Claude Code). The original notebook in the repository root is the author's own work.
+
 ## Run
 
 ```bash
